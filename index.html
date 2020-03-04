@@ -37,12 +37,22 @@
       <div class="row">
         <div class="col">
           <!-- Display Panel -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Current Train Schedule</h3>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Current Train Schedule</h3>
             </div>
-            <div class="panel-body">
-              panel content
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Train Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency (min)</th>
+                    <th scope="col">Next Arrival</th>
+                    <th scope="col">Minutes Away</th>
+                  </tr>
+                </thead>
+              </table>
             </div>
           </div>
         </div>
@@ -50,32 +60,30 @@
       <div class="row">
         <div class="col">
           <!-- Add a Train Panel -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Add a Train to the Schedule</h3>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Add a Train to the Schedule</h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               <!-- Create a Train Form -->
               <form>
                 <div class="form-group">
                   <label for="trainName">Train Name</label>
-                  <input type="text" class="form-control" id="trainName" />
+                  <input type="text" id="trainName" />
                 </div>
                 <div class="form-group">
                   <label for="destination">Destination</label>
                   <input type="text" class="destination" />
                 </div>
-                <div class="form-check">
-                  <input
-                    type="checkbox"
-                    class="form-check-input"
-                    id="exampleCheck1"
-                  />
-                  <label class="form-check-label" for="exampleCheck1"
-                    >Check me out</label
-                  >
+                <div class="form-group">
+                  <label for="time">First Train Time (in Military Time)</label>
+                  <input type="time" class="time" />
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="form-group">
+                  <label for="frequency">Frequency (In Minutes)</label>
+                  <input type="text" class="frequency" />
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
               </form>
             </div>
           </div>
