@@ -27,17 +27,37 @@ var tName = "";
 var tdest = "";
 var tfreq = 0;
 var first = 0;
-var trains = {
-    trainName: "trainName",
-    destination: "destination",
-    frequency: 'frequency',
-    nextArrival: 'nextArrival',
-    minutesAway: 'minutesAway'
-
-}
+var arrival = 0;
+var away = 0;
 
 
 // retrive Trains from the database on page load
+database.ref().on( 'child_added', function ( childsnapshot )
+{
+    let tName = childsnapshot.val().trainName;
+    let tdest = childsnapshot.val().destination;
+    let tfreq = childsnapshot.val().frequency;
+    let first = childsnapshot.val().first;
+
+    let nRow = $( '<tr>' ).attr( 'scope', "row" );
+    let td1 = $( '<td>' ).text( tName );
+    let td2 = $( '<td>' ).text( tdest );
+    let td3 = $( '<td>' ).text( tfreq );
+    let td4 = $( '<td>' ).text( arrival );
+    let td5 = $( '<td>' ).text( away );
+
+    nRow.append( td1, td2, td3, td4, td5 )
+    $( '#row' ).append( nRow )
+
+
+
+
+
+
+
+} )
+
+
 
 
 
@@ -53,10 +73,10 @@ $( '#add' ).on( 'click', function ( event )
 
     // Get values from the input
 
-    tName = $( '#tname' ).val();
-    tdest = $( '#tdest' ).val();
-    tfreq = $( '#freq' ).val();
-    first = $( '#ltime' ).val();
+    let tName = $( '#tname' ).val();
+    let tdest = $( '#tdest' ).val();
+    let tfreq = $( '#freq' ).val();
+    let first = $( '#ltime' ).val();
 
 
     // consolelog output
