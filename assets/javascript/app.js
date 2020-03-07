@@ -52,9 +52,9 @@ database.ref().on( 'child_added', function ( childsnapshot )
 
     // create the virtual table row and the table content
     let nRow = $( '<tr>' ).attr( 'scope', "row" );
-    let td1 = $( '<td>' ).text( tName );
+    let td1 = $( '<th>' ).text( tName );
     let td2 = $( '<td>' ).text( tdest );
-    let td3 = $( '<td>' ).text( tfreq );
+    let td3 = $( '<td>' ).text( 'Every ' + tfreq + ' Minutes' );
     let td4 = $( '<td>' ).text( arrival );
     let td5 = $( '<td>' ).text( mAway );
 
