@@ -1,10 +1,3 @@
-// @ts-nocheck
-// need the following global variables Train name, Destination, Fequency in minutes, next arrival time, and minutes away
-// load the page with a few existing routes
-// will need precreated train routes in firebase that load when the page loads
-// calculte next arrival time
-// calculate minutes away
-// Required for side-effects
 
 var firebaseConfig = {
     apiKey: "AIzaSyB5zkjPTz_JVKbi3im80Z7eLMsOjZ5BFbM",
@@ -21,37 +14,55 @@ firebase.initializeApp( firebaseConfig );
 
 
 
-
+// Global Variables
 var database = firebase.database()
 var tName = "";
 var tdest = "";
 var tfreq = 0;
 var first = 0;
 var arrival = 0;
-var away = 0;
+var mAway = 0;
+
+
+//  minutes away difference between the time(now) and  first
+
 
 
 // retrive Trains from the database on page load
 database.ref().on( 'child_added', function ( childsnapshot )
 {
+
+    // retrieve previously input trains from the database
     let tName = childsnapshot.val().trainName;
     let tdest = childsnapshot.val().destination;
     let tfreq = childsnapshot.val().frequency;
     let first = childsnapshot.val().first;
 
+
+    // Time Calculation for Next Arrival
+    let timeLeft = moment().diff( moment.unix( parseInt( first ) ), "minutes" ) % tfreq;
+    console.log( timeLeft );
+    let mAway = tfreq - timeLeft;
+
+    // Time Calculation for Minutes Away
+    let arrival = moment().add( mAway, 'm' ).format( 'hh:mm A' )
+
+
+
+
+    // create the virtual table row and the table content
     let nRow = $( '<tr>' ).attr( 'scope', "row" );
     let td1 = $( '<td>' ).text( tName );
     let td2 = $( '<td>' ).text( tdest );
     let td3 = $( '<td>' ).text( tfreq );
     let td4 = $( '<td>' ).text( arrival );
-    let td5 = $( '<td>' ).text( away );
+    let td5 = $( '<td>' ).text( mAway );
 
+    // Put the table row together
     nRow.append( td1, td2, td3, td4, td5 )
+
+    // Add the table row to the DOM
     $( '#row' ).append( nRow )
-
-
-
-
 
 
 
@@ -71,7 +82,7 @@ $( '#add' ).on( 'click', function ( event )
 {
     event.preventDefault();
 
-    // Get values from the input
+    // Get user values from the input
 
     let tName = $( '#tname' ).val();
     let tdest = $( '#tdest' ).val();
@@ -88,7 +99,7 @@ $( '#add' ).on( 'click', function ( event )
 
 
 
-    // push to the database
+    // push the values to the database
 
     database.ref().push( {
 
