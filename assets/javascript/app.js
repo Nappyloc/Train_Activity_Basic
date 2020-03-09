@@ -9,12 +9,14 @@ var firebaseConfig = {
     appId: "1:347543838637:web:d98f060022851b379a8b24"
 };
 // Initialize Firebase
+// @ts-ignore
 firebase.initializeApp( firebaseConfig );
 
 
 
 
 // Global Variables
+// @ts-ignore
 var database = firebase.database()
 var tName = "";
 var tdest = "";
@@ -40,11 +42,13 @@ database.ref().on( 'child_added', function ( childsnapshot )
 
 
     // Time Calculation for Next Arrival
+    // @ts-ignore
     let timeLeft = moment().diff( moment.unix( parseInt( first ) ), "minutes" ) % tfreq;
     console.log( timeLeft );
     let mAway = tfreq - timeLeft;
 
     // Time Calculation for Minutes Away
+    // @ts-ignore
     let arrival = moment().add( mAway, 'm' ).format( 'hh:mm A' )
 
 
