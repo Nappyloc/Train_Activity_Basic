@@ -68,19 +68,39 @@
               <form>
                 <div class="form-group">
                   <label for="trainName">Train Name</label>
-                  <input id="tname" type="text" id="trainName" />
+                  <input
+                    id="tname"
+                    type="text"
+                    id="trainName"
+                    onfocus="this.value=''"
+                  />
                 </div>
                 <div class="form-group">
                   <label for="destination">Destination</label>
-                  <input id="tdest" type="text" class="destination" />
+                  <input
+                    id="tdest"
+                    type="text"
+                    class="destination"
+                    onfocus="this.value=''"
+                  />
                 </div>
                 <div class="form-group">
                   <label for="time">First Train Time</label>
-                  <input id="ltime" type="time" class="time" />
+                  <input
+                    id="ltime"
+                    type="time"
+                    class="time"
+                    onfocus="this.value=''"
+                  />
                 </div>
                 <div class="form-group">
                   <label for="frequency">Frequency (In Minutes)</label>
-                  <input id="freq" type="number" class="frequency" />
+                  <input
+                    id="freq"
+                    type="number"
+                    class="frequency"
+                    onfocus="this.value=''"
+                  />
                 </div>
                 <button id="add" type="submit" class="btn btn-primary bg-dark">
                   Add Train Route
